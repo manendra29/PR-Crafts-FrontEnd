@@ -1,0 +1,261 @@
+/* Cart Page Styles */
+.cart-container {
+    padding: 32px 0;
+  }
+  
+  .cart-heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    color: #2c3e50;
+  }
+  
+  .cart-icon {
+    margin-right: 12px;
+    color: #3498db;
+  }
+  
+  .continue-shopping-btn {
+    margin-bottom: 24px;
+    border-color: #e67e22;
+    color: #e67e22;
+  }
+  
+  .continue-shopping-btn:hover {
+    background-color: rgba(230, 126, 34, 0.04);
+  }
+  
+  .cart-grid-container {
+    margin-top: 16px;
+  }
+  
+  .cart-items-container {
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .empty-cart-paper {
+    padding: 48px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .empty-cart-message {
+    color: #7f8c8d;
+    margin-bottom: 16px;
+  }
+  
+  .shop-now-btn {
+    padding: 8px 24px;
+    background-color: #e67e22;
+  }
+  
+  .shop-now-btn:hover {
+    background-color: #d35400;
+  }
+  
+  .cart-item {
+    margin-bottom: 16px;
+  }
+  
+  .item-image {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #ecf0f1;
+  }
+  
+  .item-name {
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 1rem;
+    color: #2c3e50;
+  }
+  
+  .item-color {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+  }
+  
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    width: fit-content;
+  }
+  
+  .quantity-btn {
+    color: #7f8c8d;
+  }
+  
+  .quantity-display {
+    padding: 0 8px;
+    min-width: 24px;
+    text-align: center;
+  }
+  
+  .item-price {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .remove-btn {
+    color: #e74c3c;
+  }
+  
+  .item-divider {
+    margin-top: 16px;
+  }
+  
+  .order-summary {
+    padding: 24px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: sticky;
+    top: 20px;
+  }
+  
+  .summary-heading {
+    margin-bottom: 16px;
+    color: #2c3e50;
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0;
+    color: #34495e;
+  }
+  
+  .discount-row {
+    color: #27ae60;
+  }
+  
+  .total-divider {
+    margin: 16px 0;
+  }
+  
+  .total-row {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .promo-code-section {
+    display: flex;
+    gap: 8px;
+    margin: 24px 0;
+  }
+  
+  .promo-input {
+    flex-grow: 1;
+  }
+  
+  .apply-btn {
+    height: 40px;
+    color: #3498db;
+  }
+  
+  .checkout-btn {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    padding: 12px;
+    background-color: #e67e22;
+    color: white;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .checkout-btn:hover {
+    background-color: #d35400;
+  }
+  
+  .shipping-info {
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .info-icon {
+    margin-right: 8px;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+  }
+  
+  .suggestions-section {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #ecf0f1;
+  }
+  
+  .suggestion-item {
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+  }
+  
+  .suggestion-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .suggestion-image {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  
+  .suggestion-name {
+    font-weight: 500;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .suggestion-price {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #e67e22;
+  }
+  
+  .add-to-cart-btn {
+    font-size: 0.8rem;
+    margin-top: 8px;
+    border-color: #3498db;
+    color: #3498db;
+  }
+  
+  .add-to-cart-btn:hover {
+    background-color: rgba(52, 152, 219, 0.04);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .cart-container {
+      padding: 16px 0;
+    }
+    
+    .cart-heading {
+      font-size: 1.5rem;
+    }
+    
+    .item-name {
+      font-size: 0.9rem;
+    }
+    
+    .quantity-control {
+      margin-top: 8px;
+    }
+    
+    .order-summary {
+      margin-top: 16px;
+      position: static;
+    }
+  }

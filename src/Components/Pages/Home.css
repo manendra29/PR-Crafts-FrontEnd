@@ -1,0 +1,10 @@
+.header-container{
+    margin-bottom: 80px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .header-container{
+        margin-bottom: 60px !important;
+    }
+    
+}

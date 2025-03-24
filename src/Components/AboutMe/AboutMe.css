@@ -1,0 +1,169 @@
+/* Custom styles for Paper Crafts About Me page */
+
+.header-section2{
+    margin-bottom: 100px !important;
+}
+
+.hero-section {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0 0 4rem 0;
+  }
+  
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/api/placeholder/1600/900');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.7);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+  }
+  
+  .paper-section {
+    padding: 2rem 0;
+  }
+  
+  .craft-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .craft-image:hover {
+    transform: scale(1.05);
+  }
+  
+  .paper-feature {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    background-color: #fff;
+  }
+  
+  .paper-feature:hover {
+    transform: translateY(-10px);
+  }
+  
+  .ribbon {
+    position: relative;
+    padding: 2rem 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 25 20, 50 10 Q 75 0, 100 10' fill='none' stroke='%23f0c8a0' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 100px 20px;
+  }
+  
+  .journey-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  
+  .journey-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .gallery-image {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .gallery-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  .paper-cut {
+    position: relative;
+  }
+  
+  .paper-cut::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L 5 15 L 10 20 L 15 15 L 20 20 L 25 15 L 30 20 L 35 15 L 40 20 L 45 15 L 50 20 L 55 15 L 60 20 L 65 15 L 70 20 L 75 15 L 80 20 L 85 15 L 90 20 L 95 15 L 100 20' fill='white' stroke='none'/%3E%3C/svg%3E");
+    background-size: 100px 20px;
+    background-repeat: repeat-x;
+  }
+  
+  .svg-decorator {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    opacity: 0.1;
+    z-index: 0;
+  }
+  
+  .profile-image {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .process-card {
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .process-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+  }
+  
+  .testimonial-card {
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    margin: 1rem 0;
+    background-color: #fff8f3;
+    position: relative;
+  }
+  
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 60px;
+    color: #f0c8a0;
+    opacity: 0.3;
+    font-family: Georgia, serif;
+  }
+  
+  .contact-section {
+    background-color: #f9f7f5;
+    border-radius: 10px;
+    padding: 3rem;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+  }

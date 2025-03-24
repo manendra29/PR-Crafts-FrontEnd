@@ -1,0 +1,172 @@
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 545px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Slider main styling */
+  .slider {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Slide content overlay */
+  .slide-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: #fff;
+    text-align: left;
+  }
+  
+  .slide-content h2 {
+    margin: 0 0 10px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .slide-content p {
+    margin: 0 0 15px;
+    font-size: 1rem;
+    max-width: 80%;
+  }
+  
+  .slide-button {
+    background-color: #fff;
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .slide-button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+  }
+  
+  /* Navigation controls */
+  .slider-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  
+  .slider-arrow {
+    color: white !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    margin: 0 10px !important;
+  }
+  
+  .slider-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+  }
+  
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+  }
+  
+  .slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+  }
+  
+  .slider-dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .slider-dot.active {
+    background-color: #fff;
+    transform: scale(1.2);
+  }
+  
+  /* Paper crafts theme customization */
+  .slider-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
+    z-index: 10;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .slider-container {
+      height: 400px;
+    }
+    
+    .slide-content h2 {
+      font-size: 1.5rem;
+    }
+    
+    .slide-content p {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .slider-container {
+      height: 300px;
+    }
+    
+    .slide-content h2 {
+      font-size: 1.2rem;
+    }
+    
+    .slide-content p {
+      font-size: 0.8rem;
+      max-width: 100%;
+    }
+    
+    .slider-arrow {
+      padding: 4px !important;
+    }
+    
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+    }
+  }

@@ -1,0 +1,83 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    background: linear-gradient(135deg, #FF9A8B, #FF6A88, #FF99AC);
+  }
+  
+  .auth-box {
+    padding: 35px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .auth-box:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+  }
+  
+  .auth-title {
+    font-family: 'Playfair Display', serif;
+    color: #5D4037;
+    font-weight: bold;
+  }
+  
+  .auth-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    color: #795548;
+    margin-bottom: 20px;
+  }
+  
+  .auth-input .MuiOutlinedInput-root {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .auth-input .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #FF7043;
+  }
+  
+  .auth-input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #FF5722;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+  }
+  
+  .auth-button {
+    margin-top: 20px !important;
+    background-color: #FF7043 !important;
+    color: white !important;
+    font-weight: bold !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+  }
+  
+  .auth-button:hover {
+    background-color: #E64A19 !important;
+    box-shadow: 0 4px 12px rgba(255, 87, 34, 0.4);
+    transform: scale(1.02);
+  }
+  
+  .switch-text {
+    margin-top: 15px;
+    font-family: 'Lato', sans-serif;
+    color: #5D4037;
+  }
+  
+  .auth-link {
+    color: #FF5722;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .auth-link:hover {
+    text-decoration: underline;
+    color: #E64A19;
+  }
+  

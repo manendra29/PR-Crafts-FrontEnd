@@ -1,0 +1,101 @@
+/* AddProduct.css */
+
+.add-product-container {
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+  
+  .page-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 24px;
+  }
+  
+  .form-paper {
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+  
+  .section-title {
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+  }
+  
+  .success-message {
+    background-color: #e6f4ea;
+    color: #137333;
+    padding: 16px;
+    margin-bottom: 24px;
+    border-left: 4px solid #34a853;
+  }
+  
+  .material-input-container {
+    margin-bottom: 8px;
+  }
+  
+  .add-material-btn {
+    margin-top: 8px;
+    color: #7c9c99;
+  }
+  
+  .image-upload-container {
+    margin-top: 16px;
+  }
+  
+  .upload-button {
+    margin-bottom: 16px;
+  }
+  
+  .image-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  
+  .image-preview-item {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .remove-image-btn {
+    position: absolute !important;
+    top: 4px;
+    right: 4px;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+  }
+  
+  .submit-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  
+  .submit-button {
+    min-width: 160px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .form-paper {
+      padding: 20px;
+    }
+    
+    .image-preview-item {
+      width: 120px;
+      height: 120px;
+    }
+  }

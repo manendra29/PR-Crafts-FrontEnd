@@ -1,0 +1,105 @@
+.category-list-container {
+    padding-top: 24px;
+    padding-bottom: 48px;
+  }
+  
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .page-title {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .search-paper {
+    margin-bottom: 24px;
+    padding: 8px 16px;
+    border-radius: 8px;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-icon {
+    color: #7c9c99;
+    margin-right: 12px;
+  }
+  
+  .search-input {
+    padding: 8px 0;
+  }
+  
+  .category-grid {
+    margin-top: 16px;
+  }
+  
+  .category-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .category-image {
+    object-fit: cover;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .category-name {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .card-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 16px;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  .edit-button {
+    color: #7c9c99;
+    margin-right: 8px;
+  }
+  
+  .delete-button {
+    color: #f44336;
+  }
+  
+  .no-results {
+    padding: 48px 24px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .image-upload-container {
+    margin-top: 16px;
+  }
+  
+  .upload-button {
+    margin-top: 8px;
+  }
+  
+  .edit-image-preview {
+    margin-top: 16px;
+    text-align: center;
+  }
+  
+  .preview-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+  }

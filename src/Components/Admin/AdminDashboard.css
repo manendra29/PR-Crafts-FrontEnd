@@ -1,0 +1,90 @@
+.dashboard-container {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  
+  .dashboard-welcome {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .dashboard-subtitle {
+    color: #666;
+    margin-bottom: 24px;
+  }
+  
+  .dashboard-stats {
+    margin-bottom: 24px;
+  }
+  
+  .stat-card {
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .stat-title {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 8px;
+  }
+  
+  .stat-count {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+  
+  .dashboard-quick-actions {
+    margin-bottom: 24px;
+  }
+  
+  .quick-actions-paper {
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .section-title {
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .quick-actions-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .quick-action-btn {
+    background-color: #7c9c99;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: inherit;
+    transition: background-color 0.2s ease;
+  }
+  
+  .quick-action-btn:hover {
+    background-color: #6a8a87;
+  }
+  
+  @media (max-width: 600px) {
+    .dashboard-welcome {
+      font-size: 1.5rem;
+    }
+    
+    .quick-actions-buttons {
+      flex-direction: column;
+    }
+    
+    .quick-action-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
