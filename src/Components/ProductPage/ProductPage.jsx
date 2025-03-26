@@ -485,12 +485,14 @@ const ProductPage = () => {
 
   const handleAddToCart=async(e)=>{
     e.preventDefault();
+    console.log(product.postImages[0]);
+    const price=product.discount ? (product.price - (product.price * product.discount / 100)).toFixed(2) : product.price.toFixed(2);
     try {
       await axios.post(`http://localhost:4000/api/v1/user/addtocart/${id}`,{quantity:quantity,
         customization:customization,
         title:product.title,
         image:product.postImages[0],
-        price:product.price,
+        price:price,
       },{
         withCredentials:true,
         headers:{
@@ -622,7 +624,7 @@ const ProductPage = () => {
         <div className="relative w-full max-w-5xl mx-auto">
           {product.postImages && product.postImages.length > 0 ? (
             <img 
-              src={`http://localhost:4000/${product.postImages[currentImageIndex]}`} 
+              src={product.postImages[currentImageIndex]?.url} 
               alt={`${product.title || "Product"}`}
               className="mx-auto max-h-screen object-contain"
             />
@@ -679,7 +681,7 @@ const ProductPage = () => {
                 {product.postImages && product.postImages.length > 0 ? (
                   <div className="aspect-w-1 aspect-h-1">
                     <img 
-                      src={`http://localhost:4000/${product.postImages[currentImageIndex]}`} 
+                      src={product.postImages[currentImageIndex]?.url} 
                       alt={`${product.title || "Product"}`}
                       className="w-full h-full object-contain cursor-zoom-in"
                       onClick={toggleFullImage}

@@ -73,8 +73,6 @@ const AddCategory = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(category);
-    console.log(category.image);
     try {
       await axios.post("http://localhost:4000/api/v1/post/addcategory",{
          title:category.name,

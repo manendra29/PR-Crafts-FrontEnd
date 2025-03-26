@@ -95,31 +95,121 @@ const AddProduct = () => {
 
 
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+    
+  //   try {
+  //     // Create a FormData object for multipart/form-data
+  //     const formData = new FormData();
+      
+  //     // Append all product data to the FormData object
+  //     formData.append('title', state.productData.title);
+  //     formData.append('description', state.productData.description);
+  //     formData.append('price', state.productData.price);
+  //     formData.append('discount', state.productData.discount);
+  //     formData.append('specification', state.productData.specification);
+  //     formData.append('quantity', state.productData.quantity);
+  //     formData.append('size', state.productData.size);
+  //     formData.append('stock', state.productData.stock);
+  //     formData.append('tag', state.productData.tag);
+  //     if (state.imageFiles && state.imageFiles.length > 0) {
+  //       state.imageFiles.forEach((file) => {
+  //         formData.append('images', file);
+  //       });
+  //     }
+  //     console.log(formData);
+      
+  //     const response = await axios.post(
+  //       `http://localhost:4000/api/v1/post/createpost/${state.productData.categoryId}`,
+  //       formData,
+  //       {
+  //         withCredentials: true,
+  //         headers: {
+  //           "Content-Type": "multipart/form-data"
+  //         }
+  //       }
+  //     );
+      
+  //     setSubmitStatus({ success: true, error: null });
+  //     toast.success("Product Added");
+  //     console.log("Product created:", response.data);
+      
+  //     // Reset form after successful submission
+  //     setState({
+  //       productData: {
+  //         title: '',
+  //         description: '',
+  //         price: '',
+  //         quantity: '',
+  //         size: '',
+  //         specification: '',
+  //         stock: 'Active',
+  //         tag: 'New Arrival',
+  //         discount:'',
+  //         categoryId: '',
+  //       },
+  //       errors: {},
+  //       imageFiles: [],
+  //       imagePreview: []
+  //     });
+      
+  //   } catch (error) {
+  //     console.error("Error creating product:", error);
+  //     setSubmitStatus({ 
+  //       success: false, 
+  //       error: error.response?.data?.message || "Failed to add product" 
+  //     });
+  //     toast.error("Failed to add product");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     
     try {
-      // Create a FormData object for multipart/form-data
+      // Check if image files exist
+      if (!state.imageFiles || state.imageFiles.length === 0) {
+        toast.error("At least one Post Image is Needed");
+        setLoading(false);
+        return;
+      }
+  
+      // Validate image formats
+      const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
+      const invalidImages = state.imageFiles.filter(
+        file => !allowedFormats.includes(file.type)
+      );
+  
+      if (invalidImages.length > 0) {
+        toast.error("Some image formats are not supported");
+        setLoading(false);
+        return;
+      }
+      // Create FormData for multipart upload
       const formData = new FormData();
       
-      // Append all product data to the FormData object
+      // Append text fields
       formData.append('title', state.productData.title);
       formData.append('description', state.productData.description);
       formData.append('price', state.productData.price);
-      formData.append('discount', state.productData.discount);
+      formData.append('size', state.productData.size);
       formData.append('specification', state.productData.specification);
       formData.append('quantity', state.productData.quantity);
-      formData.append('size', state.productData.size);
-      formData.append('stock', state.productData.stock);
       formData.append('tag', state.productData.tag);
-      if (state.imageFiles && state.imageFiles.length > 0) {
-        state.imageFiles.forEach((file) => {
-          formData.append('images', file);
-        });
-      }
-      console.log(formData);
+      formData.append('stock', state.productData.stock);
+      formData.append('discount', state.productData.discount);
       
+      // Append multiple image files
+      state.imageFiles.forEach((file, index) => {
+        formData.append('postImages', file);
+      });
+      
+      // Send POST request
       const response = await axios.post(
         `http://localhost:4000/api/v1/post/createpost/${state.productData.categoryId}`,
         formData,
@@ -131,11 +221,11 @@ const AddProduct = () => {
         }
       );
       
-      setSubmitStatus({ success: true, error: null });
-      toast.success("Product Added");
+      // Success handling
+      toast.success("Post created");
       console.log("Product created:", response.data);
       
-      // Reset form after successful submission
+      // Reset form state
       setState({
         productData: {
           title: '',
@@ -146,7 +236,7 @@ const AddProduct = () => {
           specification: '',
           stock: 'Active',
           tag: 'New Arrival',
-          discount:'',
+          discount: '',
           categoryId: '',
         },
         errors: {},
@@ -155,18 +245,14 @@ const AddProduct = () => {
       });
       
     } catch (error) {
+      // Error handling
       console.error("Error creating product:", error);
-      setSubmitStatus({ 
-        success: false, 
-        error: error.response?.data?.message || "Failed to add product" 
-      });
-      toast.error("Failed to add product");
+      const errorMessage = error.response?.data?.message || "Failed to add product";
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
-
-
   
 
 

@@ -393,9 +393,7 @@ const ShoppingCartComponent = () => {
   };
   
   const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-  const shipping = 4.99;
-  const tax = subtotal * 0.08;
-  const total = subtotal + shipping + tax;
+  const total = subtotal;
 
   return (
     <div className="font-sans bg-white">
@@ -481,7 +479,7 @@ const ShoppingCartComponent = () => {
                 
                 <div key={item._id} className="flex items-start space-x-4 py-4 border-b">
                   <img 
-                    src={`http://localhost:4000/${item.image}`}
+                    src={item.Image?.url}
                     alt={item.title} 
                     className="w-20 h-20 object-cover rounded-md"
                   />
@@ -527,21 +525,13 @@ const ShoppingCartComponent = () => {
           <div className="border-t bg-gray-50 p-4">
             <div className="space-y-2 mb-4">
               <div className="flex justify-between text-gray-600">
-                <span>Subtotal</span>
+                <span>Total</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-gray-600">
-                <span>Shipping</span>
-                <span>${shipping.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between text-gray-600">
-                <span>Tax</span>
-                <span>${tax.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between font-semibold text-lg pt-2 border-t">
+              {/* <div className="flex justify-between font-semibold text-lg pt-2 border-t">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
-              </div>
+                <span>₹{total.toFixed(2)}</span>
+              </div> */}
             </div>
             <button className="w-full py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center">
               <CreditCard size={20} className="mr-2" />

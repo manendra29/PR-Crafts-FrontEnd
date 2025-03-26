@@ -103,7 +103,7 @@ const Header = () => {
         <div className="drawer-profile">
           <Avatar 
             className="drawer-avatar" 
-            src={`http://localhost:4000${user.profilePicture}` || "/default-avatar.png"} 
+            src="/public/images/noPP.jpg" 
             alt={user.username || "User"}
           />
           <Typography variant="subtitle1" className="drawer-username">

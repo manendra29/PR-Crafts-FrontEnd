@@ -9,7 +9,7 @@ const PRCraftsRefined = () => {
     {
       id: 1,
       title: "DIY Paper Flowers Tutorial",
-      thumbnail: "/uploads/srk.jpg",
+      thumbnail: "https://www.livemint.com/lm-img/img/2024/05/23/600x338/CRICKET-IND-IPL-T20-HYDERABAD-KOLKATA-95_1716427886047_1716427965399.jpg",
       embedUrl: "https://www.youtube.com/embed/0ErlKdAirGQ",
       description: "Learn how to create beautiful paper flowers for your home decor."
     },

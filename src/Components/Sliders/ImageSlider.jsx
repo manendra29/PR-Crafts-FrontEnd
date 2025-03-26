@@ -116,7 +116,6 @@ const ImageSlider = () => {
             "Content-Type": "application/json"
           }
         });
-        console.log(response.data.sliders);
         setSlidesData(response.data.sliders);
       } catch (error) {
         console.log(error);
@@ -182,8 +181,8 @@ const ImageSlider = () => {
           >
             <div className="w-full h-60 md:h-[28rem] lg:h-[calc(70vh+100px)] xl:h-[calc(80vh+40px)]">
               <img 
-                src={`http://localhost:4000/${slide.images[0]}`} 
-                alt={slide._id}
+                src={slide.image?.url || "./public/images/srk.webp"} 
+                alt={slide.title || "Pr Crafts"}
                 className="w-full h-full object-cover object-center"
               />
             </div>

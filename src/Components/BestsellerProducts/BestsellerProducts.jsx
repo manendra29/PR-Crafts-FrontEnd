@@ -144,7 +144,7 @@ export const BestsellerCard = ({ product, tag }) => {
   return (
     <Card className="bestseller-card">
       <div className="image-container" onClick={()=>navigateTo(`/product/${product._id}`)}>
-        <img src={`http://localhost:4000/${product.postImages[0]}`} alt={product.title} className="product-image" />
+        <img src={product.postImages[0]?.url} alt={product.title} className="product-image" />
         {tag && <div className="bestseller-tag">Bestseller</div>}
       </div>
       

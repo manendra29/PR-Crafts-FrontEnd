@@ -462,7 +462,7 @@ const SliderManager = () => {
       const formData = new FormData();
       newImages.forEach((image) => {
         if (image.file) {
-          formData.append("images", image.file);
+          formData.append("image", image.file);
           formData.append("title", image.title); // Add titles to formData
         }
       });
@@ -504,7 +504,7 @@ const SliderManager = () => {
     if (image.isNew) {
       return image.preview;
     } else {
-      return `http://localhost:4000/${image.images}`;
+      return image.image?.url;
     }
   };
 

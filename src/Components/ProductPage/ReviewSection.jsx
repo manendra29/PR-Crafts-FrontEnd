@@ -741,12 +741,12 @@ const ReviewSection = () => {
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
-    if (files.length > 5) {
-      toast.error('You can only upload up to 5 images');
+    if (files.length > 3) {
+      toast.error('You can only upload up to 3 images');
       return;
     }
 
-    setNewReview(prev => ({ ...prev, images: files.slice(0, 5) }));
+    setNewReview(prev => ({ ...prev, images: files.slice(0, 3) }));
     setPreviewImages(files.map(file => URL.createObjectURL(file)));
   };
 
@@ -769,6 +769,7 @@ const ReviewSection = () => {
       formData.append('title', newReview.title);
       formData.append('description', newReview.description);
       formData.append('star', newReview.rating);
+      console.log(newReview.images);
       newReview.images.forEach(image => formData.append('images', image));
       
       await axios.post(`http://localhost:4000/api/v1/user/createreview/${id}`, formData, {
@@ -916,7 +917,7 @@ const ReviewSection = () => {
           </div>
           
           <div className="mb-3">
-            <label className="block text-sm mb-1">Images (up to 5)</label>
+            <label className="block text-sm mb-1">Images (up to 3)</label>
             <input 
               type="file" 
               multiple 
@@ -986,7 +987,7 @@ const ReviewSection = () => {
               </div>
               
               {/* Delete Button */}
-              {review.user === userId && (
+              {review.userId === userId && (
                 <button
                   onClick={() => deleteReview(review._id)}
                   className="text-white bg-red-500 px-2 py-1 text-sm rounded hover:bg-red-600"
@@ -1006,8 +1007,8 @@ const ReviewSection = () => {
                 <div className="flex gap-2 mt-2">
                   {review.images.map((image, index) => (
                     <img 
-                      key={index} 
-                      src={`http://localhost:4000/${image}`} 
+                      key={image.public_id} 
+                      src={image?.url}
                       alt={`Review ${index + 1}`} 
                       className="w-16 h-16 object-cover border rounded" 
                     />
