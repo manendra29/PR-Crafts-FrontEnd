@@ -187,7 +187,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post("http://localhost:4000/api/v1/user/otp", { email }, {
+      await axios.post("https://pr-crafts-backend.vercel.app/api/v1/user/otp", { email }, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"
@@ -210,7 +210,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post("http://localhost:4000/api/v1/user/verifyotp", {email, otp }, {
+      await axios.post("https://pr-crafts-backend.vercel.app/api/v1/user/verifyotp", {email, otp }, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"
@@ -238,7 +238,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/user/register", {
+      const response = await axios.post("https://pr-crafts-backend.vercel.app/api/v1/user/register", {
         username: userData.name,
         email: email,
         password: userData.password
