@@ -50,7 +50,7 @@ const AddProduct = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/v1/post/categoryname", {
+        const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/categoryname", {
           withCredentials: true,
           headers: {
             "Content-Type": "application/json"
@@ -121,7 +121,7 @@ const AddProduct = () => {
   //     console.log(formData);
       
   //     const response = await axios.post(
-  //       `http://localhost:4000/api/v1/post/createpost/${state.productData.categoryId}`,
+  //       `https://pr-crafts-backend.vercel.app/api/v1/post/createpost/${state.productData.categoryId}`,
   //       formData,
   //       {
   //         withCredentials: true,
@@ -211,7 +211,7 @@ const AddProduct = () => {
       
       // Send POST request
       const response = await axios.post(
-        `http://localhost:4000/api/v1/post/createpost/${state.productData.categoryId}`,
+        `https://pr-crafts-backend.vercel.app/api/v1/post/createpost/${state.productData.categoryId}`,
         formData,
         {
           withCredentials: true,

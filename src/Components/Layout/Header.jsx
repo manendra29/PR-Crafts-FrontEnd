@@ -42,7 +42,7 @@ const Header = () => {
   useEffect(() => {
     const fetchCartSize = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/v1/user/cartsize", {
+        const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/user/cartsize", {
           withCredentials: true,
           headers: { "Content-Type": "application/json" }
         });
@@ -70,7 +70,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:4000/api/v1/user/logout", {
+      await axios.get("https://pr-crafts-backend.vercel.app/api/v1/user/logout", {
         withCredentials: true,
         headers: { "Content-Type": "application/json" }
       });
@@ -203,7 +203,7 @@ const Header = () => {
                 <IconButton onClick={handleProfileClick} className="profile-button">
                   <Avatar 
                     className="profile-avatar" 
-                    src={`http://localhost:4000${user.profilePicture}` || "/default-avatar.png"}
+                    src={`https://pr-crafts-backend.vercel.app${user.profilePicture}` || "/default-avatar.png"}
                     alt={user.username || "User"} 
                   />
                 </IconButton>

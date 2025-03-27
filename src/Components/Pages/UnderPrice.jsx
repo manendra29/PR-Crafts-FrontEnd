@@ -14,7 +14,7 @@ const UnderPrice = () => {
     useEffect(()=>{
         const fetch = async() => {
             try {
-             const response = await axios.get(`http://localhost:4000/api/v1/user/under/${price}`,{
+             const response = await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/user/under/${price}`,{
                  withCredentials:true,
                  headers:{
                    "Content-Type":"application/json"

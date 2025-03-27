@@ -34,7 +34,7 @@
 //   useEffect(() => {
 //     const fetchPost = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:4000/api/v1/post/showpost/${id}`, {
+//         const response = await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/post/showpost/${id}`, {
 //           withCredentials: true,
 //           headers: {
 //             "Content-Type": "application/json"
@@ -155,7 +155,7 @@
 //               <div className="image-slider-container">
 //                 {product.postImages && product.postImages.length > 0 ? (
 //                   <img 
-//                     src={`http://localhost:4000/${product.postImages[currentImageIndex]}`} 
+//                     src={`https://pr-crafts-backend.vercel.app/${product.postImages[currentImageIndex]}`} 
 //                     alt={`${product.title || "Product"} view ${currentImageIndex + 1}`} 
 //                     className="product-image"
 //                   />
@@ -187,7 +187,7 @@
 //                       onClick={() => setCurrentImageIndex(index)}
 //                     >
 //                       <img 
-//                         src={`http://localhost:4000/${image}`} 
+//                         src={`https://pr-crafts-backend.vercel.app/${image}`} 
 //                         alt={`Thumbnail ${index + 1}`} 
 //                       />
 //                     </div>
@@ -210,7 +210,7 @@
 //                       onClick={() => setCurrentImageIndex(index)}
 //                     >
 //                       <img 
-//                         src={`http://localhost:4000/${image}`}
+//                         src={`https://pr-crafts-backend.vercel.app/${image}`}
 //                         alt={`Product view ${index + 1}`}
 //                         className="full-product-image"
 //                       />
@@ -488,7 +488,7 @@ const ProductPage = () => {
     console.log(product.postImages[0]);
     const price=product.discount ? (product.price - (product.price * product.discount / 100)).toFixed(2) : product.price.toFixed(2);
     try {
-      await axios.post(`http://localhost:4000/api/v1/user/addtocart/${id}`,{quantity:quantity,
+      await axios.post(`https://pr-crafts-backend.vercel.app/api/v1/user/addtocart/${id}`,{quantity:quantity,
         customization:customization,
         title:product.title,
         image:product.postImages[0],
@@ -517,7 +517,7 @@ const ProductPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/v1/post/showpost/${id}`, {
+        const response = await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/post/showpost/${id}`, {
           withCredentials: true,
           headers: {
             "Content-Type": "application/json"
@@ -731,7 +731,7 @@ const ProductPage = () => {
                         onClick={() => setCurrentImageIndex(index)}
                       >
                         <img 
-                          src={`http://localhost:4000/${image}`} 
+                          src={`https://pr-crafts-backend.vercel.app/${image}`} 
                           alt={`Thumbnail ${index + 1}`}
                           className="w-full h-full object-cover" 
                         />

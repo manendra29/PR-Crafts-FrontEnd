@@ -13,7 +13,7 @@
 //   useEffect(()=>{
 //     const fetch=async()=>{
 //       try {
-//         const response=await axios.get("http://localhost:4000/api/v1/post/slider",{
+//         const response=await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/slider",{
 //         withCredentials:true,
 //         headers:{
 //           "Content-Type":"application/json"
@@ -61,7 +61,7 @@
 //       >
 //         {slidesData.map((slide, index) => (
 //           <div className="slide" key={index}>
-//             <img src={`http://localhost:4000/${slide.images[0]}`} alt={slide._id} />
+//             <img src={`https://pr-crafts-backend.vercel.app/${slide.images[0]}`} alt={slide._id} />
 //             <div className="slide-content">
 //               <h2>{slide.title!==undefined?slide.title:"Pr Crafts"}</h2> 
 //             </div>
@@ -110,7 +110,7 @@ const ImageSlider = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/v1/post/slider", {
+        const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/slider", {
           withCredentials: true,
           headers: {
             "Content-Type": "application/json"

@@ -29,7 +29,7 @@
 //   useEffect(() => {
 //     const fetch=async()=>{
 //         try {
-//            const response=await axios.get("http://localhost:4000/api/v1/post/slider",{
+//            const response=await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/slider",{
 //             withCredentials:true,
 //             headers:{
 //                 "Content-Type":"application/json"
@@ -116,7 +116,7 @@
 //       setLoading(true);
   
 //       const response = await axios.post(
-//         "http://localhost:4000/api/v1/post/addslider",
+//         "https://pr-crafts-backend.vercel.app/api/v1/post/addslider",
 //         formData,
 //         {
 //           withCredentials: true,
@@ -176,7 +176,7 @@
 //                 <>
 //                   <Box className="slider-image-wrapper">
 //                     <img 
-//                       src={`http://localhost:4000/${images[currentPreview].images}`} 
+//                       src={`https://pr-crafts-backend.vercel.app/${images[currentPreview].images}`} 
 //                       alt="Slider preview" 
 //                       className="preview-image"
 //                     />
@@ -271,7 +271,7 @@
 //                         <Box className="image-thumbnail">
 //                         {console.log(image.images[index])}
 //                         {console.log(index)}
-//                           <img src={`http://localhost:4000$/{image.images[index]}`} alt={`Thumbnail ${index}`} />
+//                           <img src={`https://pr-crafts-backend.vercel.app$/{image.images[index]}`} alt={`Thumbnail ${index}`} />
 //                         </Box>
 //                         <Box className="image-info">
 //                           <Typography variant="body2" noWrap title={image.name}>
@@ -362,7 +362,7 @@ const SliderManager = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/v1/post/slider", {
+        const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/slider", {
           withCredentials: true,
           headers: {
             "Content-Type": "application/json"
@@ -430,7 +430,7 @@ const SliderManager = () => {
     } else {
       // For server images, make API call to delete
       try {
-        await axios.delete(`http://localhost:4000/api/v1/post/deleteslider/${image._id}`, {
+        await axios.delete(`https://pr-crafts-backend.vercel.app/api/v1/post/deleteslider/${image._id}`, {
           withCredentials: true
         });
         
@@ -470,7 +470,7 @@ const SliderManager = () => {
       setLoading(true);
   
       const response = await axios.post(
-        "http://localhost:4000/api/v1/post/addslider",
+        "https://pr-crafts-backend.vercel.app/api/v1/post/addslider",
         formData,
         {
           withCredentials: true,

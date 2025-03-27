@@ -193,7 +193,7 @@ const BestsellerProducts = ({ productName, tagLine, tag }) => {
 
   const CategoryFetch = async() => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/v1/post/category/${productName}`, {
+      const response = await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/post/category/${productName}`, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"
@@ -207,7 +207,7 @@ const BestsellerProducts = ({ productName, tagLine, tag }) => {
   
   const BestSellerFetch = async() => {
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/user/bytag/BestSeller", {
+      const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/user/bytag/BestSeller", {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"

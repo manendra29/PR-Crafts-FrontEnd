@@ -352,7 +352,7 @@ const ShoppingCartComponent = () => {
     const fetchCart = async () => {
       setIsLoading(true);
       try {
-       const response=await axios.get("http://localhost:4000/api/v1/user/mycart",{
+       const response=await axios.get("https://pr-crafts-backend.vercel.app/api/v1/user/mycart",{
         withCredentials:true,
         headers:{
           "Content-Type":"application/json"
@@ -379,7 +379,7 @@ const ShoppingCartComponent = () => {
   
   const removeItem = async(id) => {
     try {
-      await axios.delete( `http://localhost:4000/api/v1/user/deletecart/${id}`,{
+      await axios.delete( `https://pr-crafts-backend.vercel.app/api/v1/user/deletecart/${id}`,{
         withCredentials:true,
         headers:{
           "Content-Type":"application/json"

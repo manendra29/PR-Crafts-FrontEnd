@@ -74,7 +74,7 @@ const AddCategory = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4000/api/v1/post/addcategory",{
+      await axios.post("https://pr-crafts-backend.vercel.app/api/v1/post/addcategory",{
          title:category.name,
          description:category.description,
          image:category.image

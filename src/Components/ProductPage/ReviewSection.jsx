@@ -180,7 +180,7 @@
 //   useEffect(()=>{
 //     const fetch=async()=>{
 //       try {
-//           const response=await axios.get(`http://localhost:4000/api/v1/user/reviews/${id}`,{
+//           const response=await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/user/reviews/${id}`,{
 //         withCredentials:true,
 //         headers:{
 //           "Content-Type":"application/json"
@@ -289,7 +289,7 @@
 //     }
 //     console.log(formData);
 //     try {
-//       await axios.post(`http://localhost:4000/api/v1/user/createreview/${id}`,
+//       await axios.post(`https://pr-crafts-backend.vercel.app/api/v1/user/createreview/${id}`,
 //         formData
 //       ,{
 //         withCredentials:true,
@@ -586,7 +586,7 @@
 //                           {review.images.map((image, index) => (
 //                             <img 
 //                               key={index} 
-//                               src={`http://localhost:4000/${image}`} 
+//                               src={`https://pr-crafts-backend.vercel.app/${image}`} 
 //                               alt={`Review ${review._id} image ${index + 1}`} 
 //                               className="review-image"
 //                             />
@@ -707,7 +707,7 @@ const ReviewSection = () => {
     const fetchData = async () => {
       try {
         // Get reviews
-        const reviewsRes = await axios.get(`http://localhost:4000/api/v1/user/reviews/${id}`, {
+        const reviewsRes = await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/user/reviews/${id}`, {
           withCredentials: true,
           headers: { "Content-Type": "application/json" }
         });
@@ -719,7 +719,7 @@ const ReviewSection = () => {
         setAverageRating(avgRating || 0);
         
         // Get current user ID
-        const userRes = await axios.get("http://localhost:4000/api/v1/user/me", {
+        const userRes = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/user/me", {
           withCredentials: true
         });
         setUserId(userRes.data.user._id);
@@ -772,7 +772,7 @@ const ReviewSection = () => {
       console.log(newReview.images);
       newReview.images.forEach(image => formData.append('images', image));
       
-      await axios.post(`http://localhost:4000/api/v1/user/createreview/${id}`, formData, {
+      await axios.post(`https://pr-crafts-backend.vercel.app/api/v1/user/createreview/${id}`, formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" }
       });
@@ -780,7 +780,7 @@ const ReviewSection = () => {
       toast.success("Review Submitted");
       
       // Refresh reviews after submission
-      const response = await axios.get(`http://localhost:4000/api/v1/user/reviews/${id}`, {
+      const response = await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/user/reviews/${id}`, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" }
       });
@@ -800,7 +800,7 @@ const ReviewSection = () => {
 
   const deleteReview = async (reviewId) => {
     try {
-      await axios.delete(`http://localhost:4000/api/v1/user/deletereview/${reviewId}`, {
+      await axios.delete(`https://pr-crafts-backend.vercel.app/api/v1/user/deletereview/${reviewId}`, {
         withCredentials: true
       });
       
@@ -963,7 +963,7 @@ const ReviewSection = () => {
                 <div className="mr-3">
                   {review.userImage ? (
                     <img 
-                      src={`http://localhost:4000/${review.userImage}`} 
+                      src={`https://pr-crafts-backend.vercel.app/${review.userImage}`} 
                       alt="User profile" 
                       className="w-10 h-10 rounded-full object-cover"
                     />

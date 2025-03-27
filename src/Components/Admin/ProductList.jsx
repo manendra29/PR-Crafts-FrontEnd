@@ -37,7 +37,7 @@
 
 //   const fetchCategories = async () => {
 //     try {
-//       const response = await axios.get("http://localhost:4000/api/v1/post/categoryname", {
+//       const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/categoryname", {
 //         withCredentials: true,
 //         headers: {
 //           "Content-Type": "application/json"
@@ -51,7 +51,7 @@
 
 //   const fetchPost = async () => {
 //     try {
-//       const response = await axios.get("http://localhost:4000/api/v1/post/allproducts", {
+//       const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/allproducts", {
 //         withCredentials: true,
 //         headers: {
 //           "Content-Type": "application/json"
@@ -85,7 +85,7 @@
   
 //   const handleDeleteProduct = async (productId) => {
 //     try {
-//       await axios.delete(`http://localhost:4000/api/v1/post/deletepost/${productId}`, {
+//       await axios.delete(`https://pr-crafts-backend.vercel.app/api/v1/post/deletepost/${productId}`, {
 //         withCredentials: true,
 //         headers: {
 //           "Content-Type": "application/json"
@@ -181,7 +181,7 @@
 //                 <CardMedia
 //                   component="img"
 //                   height="160"
-//                   image={`http://localhost:4000/${product.postImages}`}
+//                   image={`https://pr-crafts-backend.vercel.app/${product.postImages}`}
 //                   alt={product.title}
 //                 />
                 
@@ -281,7 +281,7 @@ const ProductList = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/post/categoryname", {
+      const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/categoryname", {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"
@@ -295,7 +295,7 @@ const ProductList = () => {
 
   const fetchPost = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/post/allproducts", {
+      const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/allproducts", {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"
@@ -329,7 +329,7 @@ const ProductList = () => {
   
   const handleDeleteProduct = async (productId) => {
     try {
-      await axios.delete(`http://localhost:4000/api/v1/post/deletepost/${productId}`, {
+      await axios.delete(`https://pr-crafts-backend.vercel.app/api/v1/post/deletepost/${productId}`, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"
@@ -365,7 +365,7 @@ const ProductList = () => {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:4000/api/v1/post/updatepost/${editingProduct._id}`, editingProduct, {
+      await axios.put(`https://pr-crafts-backend.vercel.app/api/v1/post/updatepost/${editingProduct._id}`, editingProduct, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"
@@ -642,7 +642,7 @@ const ProductList = () => {
                           ? editingProduct.postImages.map((img, index) => (
                               <div key={index} className="relative h-24 bg-gray-100 rounded overflow-hidden">
                                 <img 
-                                  src={`http://localhost:4000/${img}`} 
+                                  src={`https://pr-crafts-backend.vercel.app/${img}`} 
                                   alt={`Product ${index + 1}`}
                                   className="w-full h-full object-cover"
                                 />
@@ -651,7 +651,7 @@ const ProductList = () => {
                           : (
                               <div className="relative h-24 bg-gray-100 rounded overflow-hidden">
                                 <img 
-                                  src={`http://localhost:4000/${editingProduct.postImages}`} 
+                                  src={`https://pr-crafts-backend.vercel.app/${editingProduct.postImages}`} 
                                   alt="Product"
                                   className="w-full h-full object-cover"
                                 />
@@ -691,7 +691,7 @@ const ProductList = () => {
             <div key={product._id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full transition-transform hover:scale-102 hover:shadow-lg">
               <div className="h-48 overflow-hidden">
                 <img
-                  src={`http://localhost:4000/${product.postImages[0]}`}
+                  src={`https://pr-crafts-backend.vercel.app/${product.postImages[0]}`}
                   alt={product.title}
                   className="w-full h-full object-cover object-center"
                 />

@@ -47,7 +47,7 @@ const CategoryList = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/post/allcategory", {
+      const response = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/allcategory", {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"
@@ -76,7 +76,7 @@ const CategoryList = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/v1/post/deletecategory/${selectedCategory._id}`, {
+      await axios.delete(`https://pr-crafts-backend.vercel.app/api/v1/post/deletecategory/${selectedCategory._id}`, {
         withCredentials: true
       });
       toast.success("Category deleted successfully");
@@ -95,7 +95,7 @@ const CategoryList = () => {
       description: category.description || '',
       image:category.image
     });
-    setImagePreview(`http://localhost:4000${category.image}`);
+    setImagePreview(`https://pr-crafts-backend.vercel.app${category.image}`);
     setEditDialogOpen(true);
   };
 
@@ -147,7 +147,7 @@ const CategoryList = () => {
     try {
       console.log(editedCategory);
       console.log(id);
-      await axios.put(`http://localhost:4000/api/v1/post/updatecategory/${id}`, {
+      await axios.put(`https://pr-crafts-backend.vercel.app/api/v1/post/updatecategory/${id}`, {
         title:editedCategory.name,
         description:editedCategory.description,
         image:editedCategory.image
@@ -183,7 +183,7 @@ const CategoryList = () => {
                 <CardMedia
                   component="img"
                   height={isMobile ? 140 : 180}
-                  image={`http://localhost:4000${category.image}`}
+                  image={`https://pr-crafts-backend.vercel.app${category.image}`}
                   alt={category.title}
                   className="category-image"
                 />

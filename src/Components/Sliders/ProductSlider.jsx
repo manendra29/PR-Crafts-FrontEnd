@@ -197,7 +197,7 @@ const ProductSlider = () => {
   useEffect(()=>{
     const fetch=async(req,res,next)=>{
       try {
-        const response=await axios.get("http://localhost:4000/api/v1/post/allcategory",{
+        const response=await axios.get("https://pr-crafts-backend.vercel.app/api/v1/post/allcategory",{
           withCredentials:true,
         headers:{
           "Content-Type":"application/json"

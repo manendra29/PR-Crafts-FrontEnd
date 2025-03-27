@@ -9,7 +9,7 @@ const CategoryProduct = () => {
     useEffect(()=>{
         const fetch=async(req,res,next)=>{
             try {
-                const response=await axios.get(`http://localhost:4000/api/v1/post/category/${name}`,{
+                const response=await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/post/category/${name}`,{
                 withCredentials:true,
                 headers:{
                     "Content-Type":"application/json"

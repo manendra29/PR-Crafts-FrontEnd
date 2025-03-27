@@ -19,7 +19,7 @@
 //   const generateOTP = async(e) => {
 //     e.preventDefault();
 //     try {
-//       const response=await axios.post("http://localhost:4000/api/v1/user/otp",{email},{
+//       const response=await axios.post("https://pr-crafts-backend.vercel.app/api/v1/user/otp",{email},{
 //         withCredentials:true,
 //         headers:{
 //           "Content-Type":"application/json"
@@ -35,7 +35,7 @@
 //   // Function to verify OTP
 //   const verifyOTP = async() => {
 //     try {
-//       await axios.post("http://localhost:4000/api/v1/user/verifyotp",{otp},{
+//       await axios.post("https://pr-crafts-backend.vercel.app/api/v1/user/verifyotp",{otp},{
 //         withCredentials:true,
 //         headers:{
 //           "Content-Type":"application/json"
@@ -48,7 +48,7 @@
 
 //   const handleRegister=async()=>{
 //     try {
-//       const response=await axios.post("http://localhost:4000/api/v1/user/register",{
+//       const response=await axios.post("https://pr-crafts-backend.vercel.app/api/v1/user/register",{
 //         username:userData.name,
 //         email:email,
 //         password:userData.password
