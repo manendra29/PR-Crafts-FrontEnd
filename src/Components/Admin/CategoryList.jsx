@@ -183,7 +183,7 @@ const CategoryList = () => {
                 <CardMedia
                   component="img"
                   height={isMobile ? 140 : 180}
-                  image={`https://pr-crafts-backend.vercel.app${category.image}`}
+                  image={category.image?.url}
                   alt={category.title}
                   className="category-image"
                 />

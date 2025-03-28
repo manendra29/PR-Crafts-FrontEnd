@@ -691,7 +691,7 @@ const ProductList = () => {
             <div key={product._id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full transition-transform hover:scale-102 hover:shadow-lg">
               <div className="h-48 overflow-hidden">
                 <img
-                  src={`https://pr-crafts-backend.vercel.app/${product.postImages[0]}`}
+                  src={product.postImages[0]?.url}
                   alt={product.title}
                   className="w-full h-full object-cover object-center"
                 />

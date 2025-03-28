@@ -248,7 +248,6 @@ const Register = () => {
           "Content-Type": "application/json"
         }
       });
-
       toast.success("User Registered Successfully");
       setUser(response.data.user);
       navigateTo("/");

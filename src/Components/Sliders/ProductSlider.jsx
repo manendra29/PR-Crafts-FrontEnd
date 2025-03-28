@@ -222,7 +222,7 @@ const ProductSlider = () => {
             <div key={product._id} className="category-item" onClick={()=>{navigateTo(`/category/${product.title}`)}}>
               <div className="category-image-wrapper">
                 <img 
-                  src={product.image.url} 
+                  src={product.image?.url} 
                   alt={product.title} 
                   className="category-image" 
                 />
