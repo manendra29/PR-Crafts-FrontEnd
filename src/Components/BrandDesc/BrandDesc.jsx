@@ -72,12 +72,12 @@ import "./BrandDesc.css";
 import { Container, Typography } from "@mui/material";
 
 const logos = [
-  { id: 1, img: "/images/happyCustomer.webp", text: "Happy Customers", prefix: "1000+" },
-  { id: 2, img: "/images/happyCustomer.webp", text: "Follow us on Instagram" },
-  { id: 3, img: "/images/happyCustomer.webp", text: "Made in India" },
-  { id: 4, img: "/images/happyCustomer.webp", text: "Eco-Friendly Craft" },
-  { id: 5, img: "/images/happyCustomer.webp", text: "100% Handmade" },
-  { id: 6, img: "/images/happyCustomer.webp", text: "Fast Delivery" }
+  { id: 1, img: "/images/happy.jpg", text: "Happy Customers", prefix: "1000+" },
+  { id: 2, img: "/images/insta.jpg", text: "Follow us on Instagram" },
+  { id: 3, img: "/images/madeInIndia.jpg", text: "Made in India" },
+  { id: 4, img: "/images/eco.jpg", text: "Eco-Friendly Craft" },
+  { id: 5, img: "/images/handmade.jpg", text: "100% Handmade" },
+  { id: 6, img: "/images/delivery.jpg", text: "Fast Delivery" }
 ];
 
 const BrandDesc = () => {
