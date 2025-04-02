@@ -135,7 +135,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export const BestsellerCard = ({ product, tag }) => {
-  
+  console.log(product);
   const navigateTo = useNavigate();
   
   // Calculate the discounted price

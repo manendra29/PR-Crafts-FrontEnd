@@ -682,11 +682,388 @@
 
 
 
+// import React, { useState, useEffect } from 'react';
+// import { Star, StarHalf, User } from 'lucide-react';
+// import axios from 'axios';
+// import toast from 'react-hot-toast';
+// import { useParams } from 'react-router-dom';
+
+// const ReviewSection = () => {
+//   const { id } = useParams();
+//   const [reviews, setReviews] = useState([]);
+//   const [averageRating, setAverageRating] = useState(0);
+//   const [newReview, setNewReview] = useState({
+//     title: '',
+//     description: '',
+//     rating: 0,
+//     images: []
+//   });
+//   const [previewImages, setPreviewImages] = useState([]);
+//   const [userId, setUserId] = useState('');
+//   const [visibleReviews, setVisibleReviews] = useState(4); // Show 4 reviews initially
+
+//   // Fetch reviews and user info
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         // Get reviews
+//         const reviewsRes = await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/user/reviews/${id}`, {
+//           withCredentials: true,
+//           headers: { "Content-Type": "application/json" }
+//         });
+        
+//         setReviews(reviewsRes.data.reviews);
+        
+//         // Calculate average rating
+//         const avgRating = reviewsRes.data.reviews.reduce((sum, review) => sum + review.star, 0) / reviewsRes.data.reviews.length;
+//         setAverageRating(avgRating || 0);
+        
+//         // Get current user ID
+//         const userRes = await axios.get("https://pr-crafts-backend.vercel.app/api/v1/user/me", {
+//           withCredentials: true
+//         });
+//         setUserId(userRes.data.user._id);
+//       } catch (error) {
+//         console.error('Error fetching data:', error);
+//       }
+//     };
+//     fetchData();
+//   }, [id]);
+
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setNewReview(prev => ({ ...prev, [name]: value }));
+//   };
+
+//   const handleRatingChange = (rating) => {
+//     setNewReview(prev => ({ ...prev, rating }));
+//   };
+
+//   const handleImageUpload = (e) => {
+//     const files = Array.from(e.target.files);
+//     if (files.length > 3) {
+//       toast.error('You can only upload up to 3 images');
+//       return;
+//     }
+
+//     setNewReview(prev => ({ ...prev, images: files.slice(0, 3) }));
+//     setPreviewImages(files.map(file => URL.createObjectURL(file)));
+//   };
+
+//   const removeImage = (index) => {
+//     const updatedImages = [...newReview.images];
+//     updatedImages.splice(index, 1);
+    
+//     const updatedPreviews = [...previewImages];
+//     URL.revokeObjectURL(updatedPreviews[index]);
+//     updatedPreviews.splice(index, 1);
+    
+//     setNewReview(prev => ({ ...prev, images: updatedImages }));
+//     setPreviewImages(updatedPreviews);
+//   };
+
+//   const submitReview = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const formData = new FormData();
+//       formData.append('title', newReview.title);
+//       formData.append('description', newReview.description);
+//       formData.append('star', newReview.rating);
+//       console.log(newReview.images);
+//       newReview.images.forEach(image => formData.append('images', image));
+      
+//       await axios.post(`https://pr-crafts-backend.vercel.app/api/v1/user/createreview/${id}`, formData, {
+//         withCredentials: true,
+//         headers: { "Content-Type": "multipart/form-data" }
+//       });
+      
+//       toast.success("Review Submitted");
+      
+//       // Refresh reviews after submission
+//       const response = await axios.get(`https://pr-crafts-backend.vercel.app/api/v1/user/reviews/${id}`, {
+//         withCredentials: true,
+//         headers: { "Content-Type": "application/json" }
+//       });
+      
+//       setReviews(response.data.reviews);
+//       const avgRating = response.data.reviews.reduce((sum, review) => sum + review.star, 0) / response.data.reviews.length;
+//       setAverageRating(avgRating || 0);
+      
+//       // Reset form
+//       setNewReview({ title: '', description: '', rating: 0, images: [] });
+//       setPreviewImages([]);
+//     } catch (error) {
+//       toast.error("Error submitting review");
+//       console.error('Error submitting review:', error);
+//     }
+//   };
+
+//   const deleteReview = async (reviewId) => {
+//     try {
+//       await axios.delete(`https://pr-crafts-backend.vercel.app/api/v1/user/deletereview/${reviewId}`, {
+//         withCredentials: true
+//       });
+      
+//       toast.success("Review deleted");
+      
+//       // Update reviews list
+//       const updatedReviews = reviews.filter(review => review._id !== reviewId);
+//       setReviews(updatedReviews);
+      
+//       // Recalculate average
+//       const avgRating = updatedReviews.length 
+//         ? updatedReviews.reduce((sum, review) => sum + review.star, 0) / updatedReviews.length 
+//         : 0;
+//       setAverageRating(avgRating);
+//     } catch (error) {
+//       toast.error("Error deleting review");
+//       console.error('Error deleting review:', error);
+//     }
+//   };
+
+//   // Load more reviews
+//   const loadMoreReviews = () => {
+//     setVisibleReviews(prev => prev + 4); // Add 4 more reviews
+//   };
+
+//   // Renders stars with half star support
+//   const renderStars = (rating) => {
+//     const stars = [];
+//     const fullStars = Math.floor(rating);
+//     const hasHalfStar = rating % 1 >= 0.5;
+    
+//     for (let i = 1; i <= 5; i++) {
+//       if (i <= fullStars) {
+//         stars.push(
+//           <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+//         );
+//       } else if (i === fullStars + 1 && hasHalfStar) {
+//         stars.push(
+//           <StarHalf key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+//         );
+//       } else {
+//         stars.push(
+//           <Star key={i} className="h-4 w-4 text-gray-300" />
+//         );
+//       }
+//     }
+    
+//     return stars;
+//   };
+
+//   // Get visible reviews for pagination
+//   const displayedReviews = reviews.slice(0, visibleReviews);
+//   const hasMoreReviews = reviews.length > visibleReviews;
+
+//   return (
+//     <div className="max-w-2xl mx-auto p-4">
+//       <h2 className="text-xl font-bold mb-4">Customer Reviews</h2>
+      
+//       {/* Rating Summary */}
+//       <div className="flex items-center mb-6 bg-gray-50 p-3 rounded">
+//         <div className="mr-4">
+//           <span className="text-2xl font-bold">{averageRating.toFixed(1)}</span>
+//           <div className="flex">
+//             {renderStars(averageRating)}
+//           </div>
+//           <span className="text-sm text-gray-500">{reviews.length} reviews</span>
+//         </div>
+//       </div>
+
+//       {/* Add Review Form */}
+//       <div className="mb-6 p-4 border rounded">
+//         <h3 className="font-semibold mb-3">Write a Review</h3>
+//         <form onSubmit={submitReview}>
+//           <div className="mb-3">
+//             <label className="block text-sm mb-1">Rating*</label>
+//             <div className="flex">
+//               {[1, 2, 3, 4, 5].map(star => (
+//                 <button 
+//                   key={star} 
+//                   type="button"
+//                   onClick={() => handleRatingChange(star)}
+//                   className="mr-1"
+//                 >
+//                   <Star 
+//                     className={`h-6 w-6 ${newReview.rating >= star ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
+//                   />
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+          
+//           <div className="mb-3">
+//             <label className="block text-sm mb-1">Title*</label>
+//             <input
+//               type="text"
+//               name="title"
+//               value={newReview.title}
+//               onChange={handleInputChange}
+//               className="w-full px-2 py-1 border rounded"
+//               required
+//             />
+//           </div>
+          
+//           <div className="mb-3">
+//             <label className="block text-sm mb-1">Review*</label>
+//             <textarea
+//               name="description"
+//               value={newReview.description}
+//               onChange={handleInputChange}
+//               rows="3"
+//               className="w-full px-2 py-1 border rounded"
+//               required
+//             ></textarea>
+//           </div>
+          
+//           <div className="mb-3">
+//             <label className="block text-sm mb-1">Images (up to 3)</label>
+//             <input 
+//               type="file" 
+//               multiple 
+//               accept="image/*"
+//               onChange={handleImageUpload}
+//               className="mb-2"
+//             />
+            
+//             {previewImages.length > 0 && (
+//               <div className="flex flex-wrap gap-2 mt-2">
+//                 {previewImages.map((src, index) => (
+//                   <div key={index} className="relative">
+//                     <img src={src} alt="Preview" className="w-16 h-16 object-cover border rounded" />
+//                     <button 
+//                       type="button" 
+//                       onClick={() => removeImage(index)}
+//                       className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 text-xs"
+//                     >
+//                       ×
+//                     </button>
+//                   </div>
+//                 ))}
+//               </div>
+//             )}
+//           </div>
+          
+//           <button 
+//             type="submit" 
+//             className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+//           >
+//             Submit Review
+//           </button>
+//         </form>
+//       </div>
+
+//       {/* Review List */}
+//       <div>
+//         {displayedReviews.map(review => (
+//           <div key={review._id} className="mb-4 pb-4 border-b">
+//             <div className="flex items-start justify-between">
+//               <div className="flex items-center mb-2">
+//                 {/* User Profile */}
+//                 <div className="mr-3">
+//                   {review.userImage ? (
+//                     <img 
+//                       src={`https://pr-crafts-backend.vercel.app/${review.userImage}`} 
+//                       alt="User profile" 
+//                       className="w-10 h-10 rounded-full object-cover"
+//                     />
+//                   ) : (
+//                     <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+//                       <User className="h-6 w-6 text-gray-500" />
+//                     </div>
+//                   )}
+//                 </div>
+                
+//                 {/* User Info and Rating */}
+//                 <div>
+//                   <div className="font-medium">{review.userName || "Anonymous User"}</div>
+//                   <div className="flex">
+//                     {renderStars(review.star)}
+//                     <span className="text-sm text-gray-500 ml-2">
+//                       {new Date(review.createdAt).toLocaleDateString()}
+//                     </span>
+//                   </div>
+//                 </div>
+//               </div>
+              
+//               {/* Delete Button */}
+//               {review.userId === userId && (
+//                 <button
+//                   onClick={() => deleteReview(review._id)}
+//                   className="text-white bg-red-500 px-2 py-1 text-sm rounded hover:bg-red-600"
+//                 >
+//                   Delete
+//                 </button>
+//               )}
+//             </div>
+            
+//             {/* Review Content */}
+//             <div className="ml-12">
+//               <div className="font-medium mb-1">{review.title}</div>
+//               <p className="text-gray-700 text-sm mb-2">{review.description}</p>
+              
+//               {/* Review Images */}
+//               {review.images && review.images.length > 0 && (
+//                 <div className="flex gap-2 mt-2">
+//                   {review.images.map((image, index) => (
+//                     <img 
+//                       key={image.public_id} 
+//                       src={image?.url}
+//                       alt={`Review ${index + 1}`} 
+//                       className="w-16 h-16 object-cover border rounded" 
+//                     />
+//                   ))}
+//                 </div>
+//               )}
+//             </div>
+//           </div>
+//         ))}
+        
+//         {/* Load More Button */}
+//         {hasMoreReviews && (
+//           <div className="text-center mt-4">
+//             <button 
+//               onClick={loadMoreReviews}
+//               className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded"
+//             >
+//               Show More Reviews ({reviews.length - visibleReviews} remaining)
+//             </button>
+//           </div>
+//         )}
+        
+//         {/* No Reviews Message */}
+//         {reviews.length === 0 && (
+//           <div className="text-center py-6 text-gray-500">
+//             No reviews yet. Be the first to leave a review!
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ReviewSection;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
-import { Star, StarHalf, User } from 'lucide-react';
+import { Star, StarHalf, User, X, Camera, Send } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ReviewSection = () => {
   const { id } = useParams();
@@ -700,7 +1077,8 @@ const ReviewSection = () => {
   });
   const [previewImages, setPreviewImages] = useState([]);
   const [userId, setUserId] = useState('');
-  const [visibleReviews, setVisibleReviews] = useState(4); // Show 4 reviews initially
+  const [visibleReviews, setVisibleReviews] = useState(4);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   // Fetch reviews and user info
   useEffect(() => {
@@ -769,7 +1147,6 @@ const ReviewSection = () => {
       formData.append('title', newReview.title);
       formData.append('description', newReview.description);
       formData.append('star', newReview.rating);
-      console.log(newReview.images);
       newReview.images.forEach(image => formData.append('images', image));
       
       await axios.post(`https://pr-crafts-backend.vercel.app/api/v1/user/createreview/${id}`, formData, {
@@ -792,6 +1169,7 @@ const ReviewSection = () => {
       // Reset form
       setNewReview({ title: '', description: '', rating: 0, images: [] });
       setPreviewImages([]);
+      setIsFormVisible(false);
     } catch (error) {
       toast.error("Error submitting review");
       console.error('Error submitting review:', error);
@@ -823,7 +1201,7 @@ const ReviewSection = () => {
 
   // Load more reviews
   const loadMoreReviews = () => {
-    setVisibleReviews(prev => prev + 4); // Add 4 more reviews
+    setVisibleReviews(prev => prev + 4);
   };
 
   // Renders stars with half star support
@@ -856,189 +1234,330 @@ const ReviewSection = () => {
   const hasMoreReviews = reviews.length > visibleReviews;
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h2 className="text-xl font-bold mb-4">Customer Reviews</h2>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg"
+    >
+      <h2 className="text-2xl font-bold mb-6 text-black border-b pb-3 tracking-tight">
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.7 }}
+        >
+          Customer Reviews
+        </motion.span>
+      </h2>
       
       {/* Rating Summary */}
-      <div className="flex items-center mb-6 bg-gray-50 p-3 rounded">
-        <div className="mr-4">
-          <span className="text-2xl font-bold">{averageRating.toFixed(1)}</span>
-          <div className="flex">
+      <motion.div 
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        className="flex items-center mb-8 bg-gray-50 p-5 rounded-lg shadow-sm"
+      >
+        <div className="mr-6">
+          <motion.span 
+            initial={{ scale: 0.7 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.5, type: "spring" }}
+            className="text-4xl font-bold text-black"
+          >
+            {averageRating.toFixed(1)}
+          </motion.span>
+          <motion.div 
+            className="flex mt-1"
+            initial={{ x: -10, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
             {renderStars(averageRating)}
-          </div>
-          <span className="text-sm text-gray-500">{reviews.length} reviews</span>
+          </motion.div>
+          <motion.span 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+            className="text-sm text-gray-500 mt-1 block"
+          >
+            Based on {reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}
+          </motion.span>
         </div>
-      </div>
+      </motion.div>
+
+      {/* Add Review Button */}
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.5 }}
+      >
+        <button 
+          onClick={() => setIsFormVisible(!isFormVisible)}
+          className="w-full py-3 mb-6 bg-black text-white font-medium rounded-md shadow hover:bg-gray-800 transition-all duration-300 flex items-center justify-center"
+        >
+          {isFormVisible ? 'Cancel Review' : 'Write a Review'}
+          <Send className="ml-2 h-4 w-4" />
+        </button>
+      </motion.div>
 
       {/* Add Review Form */}
-      <div className="mb-6 p-4 border rounded">
-        <h3 className="font-semibold mb-3">Write a Review</h3>
-        <form onSubmit={submitReview}>
-          <div className="mb-3">
-            <label className="block text-sm mb-1">Rating*</label>
-            <div className="flex">
-              {[1, 2, 3, 4, 5].map(star => (
-                <button 
-                  key={star} 
-                  type="button"
-                  onClick={() => handleRatingChange(star)}
-                  className="mr-1"
-                >
-                  <Star 
-                    className={`h-6 w-6 ${newReview.rating >= star ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-          
-          <div className="mb-3">
-            <label className="block text-sm mb-1">Title*</label>
-            <input
-              type="text"
-              name="title"
-              value={newReview.title}
-              onChange={handleInputChange}
-              className="w-full px-2 py-1 border rounded"
-              required
-            />
-          </div>
-          
-          <div className="mb-3">
-            <label className="block text-sm mb-1">Review*</label>
-            <textarea
-              name="description"
-              value={newReview.description}
-              onChange={handleInputChange}
-              rows="3"
-              className="w-full px-2 py-1 border rounded"
-              required
-            ></textarea>
-          </div>
-          
-          <div className="mb-3">
-            <label className="block text-sm mb-1">Images (up to 3)</label>
-            <input 
-              type="file" 
-              multiple 
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="mb-2"
-            />
-            
-            {previewImages.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-2">
-                {previewImages.map((src, index) => (
-                  <div key={index} className="relative">
-                    <img src={src} alt="Preview" className="w-16 h-16 object-cover border rounded" />
-                    <button 
-                      type="button" 
-                      onClick={() => removeImage(index)}
-                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 text-xs"
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          
-          <button 
-            type="submit" 
-            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+      <AnimatePresence>
+        {isFormVisible && (
+          <motion.div 
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="overflow-hidden"
           >
-            Submit Review
-          </button>
-        </form>
-      </div>
-
-      {/* Review List */}
-      <div>
-        {displayedReviews.map(review => (
-          <div key={review._id} className="mb-4 pb-4 border-b">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center mb-2">
-                {/* User Profile */}
-                <div className="mr-3">
-                  {review.userImage ? (
-                    <img 
-                      src={`https://pr-crafts-backend.vercel.app/${review.userImage}`} 
-                      alt="User profile" 
-                      className="w-10 h-10 rounded-full object-cover"
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.4 }}
+              className="mb-8 p-6 border border-gray-200 rounded-lg shadow-sm bg-white"
+            >
+              <h3 className="font-semibold mb-4 text-lg">Share Your Experience</h3>
+              <form onSubmit={submitReview}>
+                <div className="mb-5">
+                  <label className="block text-sm font-medium mb-2 text-gray-700">Rating*</label>
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map(star => (
+                      <motion.button 
+                        key={star} 
+                        type="button"
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => handleRatingChange(star)}
+                        className="mr-1"
+                      >
+                        <Star 
+                          className={`h-8 w-8 ${newReview.rating >= star ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'} 
+                                    transition-colors duration-200`} 
+                        />
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="mb-5">
+                  <label className="block text-sm font-medium mb-2 text-gray-700">Title*</label>
+                  <input
+                    type="text"
+                    name="title"
+                    value={newReview.title}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200"
+                    placeholder="Summarize your experience"
+                    required
+                  />
+                </div>
+                
+                <div className="mb-5">
+                  <label className="block text-sm font-medium mb-2 text-gray-700">Review*</label>
+                  <textarea
+                    name="description"
+                    value={newReview.description}
+                    onChange={handleInputChange}
+                    rows="4"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200"
+                    placeholder="Share the details of your experience"
+                    required
+                  ></textarea>
+                </div>
+                
+                <div className="mb-5">
+                  <label className="block text-sm font-medium mb-2 text-gray-700">Images (up to 3)</label>
+                  <div className="relative">
+                    <input 
+                      type="file" 
+                      id="file-upload"
+                      multiple 
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                      aria-label="Upload images"
                     />
-                  ) : (
-                    <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                      <User className="h-6 w-6 text-gray-500" />
+                    <div className="px-4 py-3 border border-dashed border-gray-300 rounded-md text-center flex items-center justify-center bg-gray-50 hover:bg-gray-100 transition-all duration-200">
+                      <Camera className="h-5 w-5 mr-2 text-gray-500" />
+                      <span className="text-sm text-gray-500">Upload Photos</span>
                     </div>
+                  </div>
+                  
+                  {previewImages.length > 0 && (
+                    <motion.div 
+                      className="flex flex-wrap gap-3 mt-3"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {previewImages.map((src, index) => (
+                        <motion.div 
+                          key={index} 
+                          className="relative"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.1, duration: 0.3 }}
+                        >
+                          <img src={src} alt="Preview" className="w-20 h-20 object-cover border rounded-md shadow-sm" />
+                          <motion.button 
+                            type="button" 
+                            onClick={() => removeImage(index)}
+                            className="absolute -top-2 -right-2 bg-black text-white rounded-full p-1 shadow-md hover:bg-red-600 transition-colors duration-200"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                          >
+                            <X className="h-3 w-3" />
+                          </motion.button>
+                        </motion.div>
+                      ))}
+                    </motion.div>
                   )}
                 </div>
                 
-                {/* User Info and Rating */}
-                <div>
-                  <div className="font-medium">{review.userName || "Anonymous User"}</div>
-                  <div className="flex">
-                    {renderStars(review.star)}
-                    <span className="text-sm text-gray-500 ml-2">
-                      {new Date(review.createdAt).toLocaleDateString()}
-                    </span>
+                <motion.button 
+                  type="submit" 
+                  className="w-full px-4 py-3 bg-black text-white font-medium rounded-md shadow hover:bg-gray-800 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Submit Review
+                </motion.button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Review List */}
+      <div className="space-y-6">
+        <AnimatePresence>
+          {displayedReviews.map((review, idx) => (
+            <motion.div 
+              key={review._id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ delay: idx * 0.1, duration: 0.4 }}
+              className="mb-6 p-5 border border-gray-100 rounded-lg shadow-sm bg-white hover:shadow-md transition-shadow duration-300"
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex items-center mb-3">
+                  {/* User Profile */}
+                  <motion.div 
+                    className="mr-4"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {review.userImage ? (
+                      <img 
+                        src={`https://pr-crafts-backend.vercel.app/${review.userImage}`} 
+                        alt="User profile" 
+                        className="w-12 h-12 rounded-full object-cover border-2 border-gray-200 shadow-sm"
+                      />
+                    ) : (
+                      <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center shadow-sm">
+                        <User className="h-6 w-6 text-gray-500" />
+                      </div>
+                    )}
+                  </motion.div>
+                  
+                  {/* User Info and Rating */}
+                  <div>
+                    <div className="font-medium text-black">{review.userName || "Anonymous User"}</div>
+                    <div className="flex items-center">
+                      <div className="flex mr-2">
+                        {renderStars(review.star)}
+                      </div>
+                      <span className="text-xs text-gray-500">
+                        {new Date(review.createdAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </span>
+                    </div>
                   </div>
                 </div>
+                
+                {/* Delete Button */}
+                {review.userId === userId && (
+                  <motion.button
+                    onClick={() => deleteReview(review._id)}
+                    className="text-white bg-black px-3 py-1 text-xs rounded-full hover:bg-red-600 transition-colors duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Delete
+                  </motion.button>
+                )}
               </div>
               
-              {/* Delete Button */}
-              {review.userId === userId && (
-                <button
-                  onClick={() => deleteReview(review._id)}
-                  className="text-white bg-red-500 px-2 py-1 text-sm rounded hover:bg-red-600"
-                >
-                  Delete
-                </button>
-              )}
-            </div>
-            
-            {/* Review Content */}
-            <div className="ml-12">
-              <div className="font-medium mb-1">{review.title}</div>
-              <p className="text-gray-700 text-sm mb-2">{review.description}</p>
-              
-              {/* Review Images */}
-              {review.images && review.images.length > 0 && (
-                <div className="flex gap-2 mt-2">
-                  {review.images.map((image, index) => (
-                    <img 
-                      key={image.public_id} 
-                      src={image?.url}
-                      alt={`Review ${index + 1}`} 
-                      className="w-16 h-16 object-cover border rounded" 
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
+              {/* Review Content */}
+              <div className="ml-16">
+                <div className="font-medium text-black mb-2">{review.title}</div>
+                <p className="text-gray-700 text-sm mb-3 leading-relaxed">{review.description}</p>
+                
+                {/* Review Images */}
+                {review.images && review.images.length > 0 && (
+                  <motion.div 
+                    className="flex gap-3 mt-3"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                  >
+                    {review.images.map((image, index) => (
+                      <motion.img 
+                        key={image.public_id}
+                        whileHover={{ scale: 1.05, rotate: 1 }}
+                        transition={{ duration: 0.2 }}
+                        src={image?.url}
+                        alt={`Review ${index + 1}`} 
+                        className="w-20 h-20 object-cover border rounded-md shadow-sm cursor-pointer" 
+                      />
+                    ))}
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
         
         {/* Load More Button */}
         {hasMoreReviews && (
-          <div className="text-center mt-4">
-            <button 
+          <motion.div 
+            className="text-center mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
+            <motion.button 
               onClick={loadMoreReviews}
-              className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded"
+              className="px-6 py-3 bg-white border border-gray-300 hover:border-black text-gray-800 rounded-md shadow-sm transition-all duration-300"
+              whileHover={{ scale: 1.03, backgroundColor: "#f9f9f9" }}
+              whileTap={{ scale: 0.97 }}
             >
-              Show More Reviews ({reviews.length - visibleReviews} remaining)
-            </button>
-          </div>
+              Load More Reviews ({reviews.length - visibleReviews} remaining)
+            </motion.button>
+          </motion.div>
         )}
         
         {/* No Reviews Message */}
         {reviews.length === 0 && (
-          <div className="text-center py-6 text-gray-500">
-            No reviews yet. Be the first to leave a review!
-          </div>
+          <motion.div 
+            className="text-center py-16 text-gray-500"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <div className="mb-4">
+              <Star className="h-16 w-16 mx-auto text-gray-200" />
+            </div>
+            <h3 className="text-xl font-medium text-gray-700 mb-2">No reviews yet</h3>
+            <p className="text-gray-500">Be the first to share your experience!</p>
+          </motion.div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

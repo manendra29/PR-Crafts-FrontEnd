@@ -6,7 +6,6 @@ import axios from 'axios';
 
 const UnderPrice = () => {
     const {price}=useParams();
-    console.log(price);
     const [products, setProducts] = useState([]);
     const categoryName=price==499?"Under ₹499":price==999?"Under ₹999":"Under ₹1999";
     const tagLine="Shop for the best products under "+price;
