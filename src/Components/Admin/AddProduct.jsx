@@ -41,6 +41,7 @@ const AddProduct = () => {
       tag: 'New Arrival',
       discount:'',
       categoryId: '',
+      videoLink: ''
     },
     errors: {},
     imageFiles: [], // Store actual file objects
@@ -203,6 +204,7 @@ const AddProduct = () => {
       formData.append('tag', state.productData.tag);
       formData.append('stock', state.productData.stock);
       formData.append('discount', state.productData.discount);
+      formData.append('videoLink', state.productData.videoLink);
       
       // Append multiple image files
       state.imageFiles.forEach((file, index) => {
@@ -308,6 +310,15 @@ const AddProduct = () => {
                 multiline
                 rows={3}
                 required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Insta Video Link"
+                name="videoLink"
+                value={state.productData.videoLink}
+                onChange={handleInputChange}
+                fullWidth
               />
             </Grid>
             

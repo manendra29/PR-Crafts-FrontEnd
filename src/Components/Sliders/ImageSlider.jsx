@@ -350,7 +350,7 @@ const ImageSlider = () => {
   if (slidesData.length === 0) {
     return <div className="w-full h-48 sm:h-64 md:h-80 bg-gray-100 flex items-center justify-center">No slides available</div>;
   }
-
+ 
   // Determine height based on screen size for better fit
   const getSliderHeight = () => {
     if (windowWidth < 640) { // Mobile
