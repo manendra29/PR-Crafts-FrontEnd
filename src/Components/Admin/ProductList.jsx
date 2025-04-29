@@ -534,16 +534,20 @@ const ProductList = () => {
                   </div>
 
 
-                      
-                  <Grid item xs={12}>
-              <TextField
-                label="Insta Video Link"
-                name="videoLink"
-                value={editingProduct.videoLink || ''}
-                onChange={handleEditChange}
-                fullWidth
-              />
-            </Grid>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Video Link
+                    </label>
+                    <input
+                      type="text"
+                      name="videoLink"
+                      value={editingProduct.videoLink || ''}
+                      onChange={handleEditChange}
+                      className="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+
 
 
 
