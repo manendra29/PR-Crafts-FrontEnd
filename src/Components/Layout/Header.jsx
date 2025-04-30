@@ -412,13 +412,13 @@ const Header = () => {
             {/* Action Buttons */}
             <div className="flex items-center space-x-4">
               {/* Shopping Cart */}
-              <motion.div
+              {isAuthorized && <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
               >
                 <ShoppingCartComponent />
-              </motion.div>
+              </motion.div> }
 
               {/* Login/Profile */}
               {isAuthorized ? (
@@ -440,7 +440,7 @@ const Header = () => {
                           className="h-full w-full object-cover"
                           onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src = "/public/images/noPP.jpg";
+                            e.target.src = "/images/noPP.jpg";
                           }}
                         />
                       </div>
@@ -564,7 +564,7 @@ const Header = () => {
                       className="h-full w-full object-cover"
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "/public/images/noPP.jpg";
+                        e.target.src = "/images/noPP.jpg";
                       }}
                     />
                   </div>
