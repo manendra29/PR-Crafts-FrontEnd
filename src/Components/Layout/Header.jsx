@@ -435,7 +435,7 @@ const Header = () => {
                     >
                       <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-purple-500 hover:border-blue-500 transition-all duration-300">
                         <img
-                          src={`https://pr-crafts-backend.vercel.app${user.profilePicture}` || "/default-avatar.png"}
+                          src={`https://pr-crafts-backend.vercel.app${user.profilePicture}` || "//public/images/noPP.jpg"}
                           alt={user.username || "User"}
                           className="h-full w-full object-cover"
                           onError={(e) => {
@@ -559,7 +559,7 @@ const Header = () => {
                 <div className="p-4 border-b flex items-center space-x-3">
                   <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-purple-500">
                     <img
-                      src={`https://pr-crafts-backend.vercel.app${user.profilePicture}` || "/default-avatar.png"}
+                      src={`https://pr-crafts-backend.vercel.app${user.profilePicture}` || "//public/images/noPP.jpg"}
                       alt={user.username || "User"}
                       className="h-full w-full object-cover"
                       onError={(e) => {
